@@ -129,6 +129,7 @@ export const resetPasswordAction = async (formData: FormData) => {
 
 export const signInWithGoogleAction = async () => {
   const supabase = await createClient();
+  const origin = (await headers()).get("origin");
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
@@ -144,7 +145,7 @@ export const signInWithGoogleAction = async () => {
   }
 
   // Redirect will be handled by Supabase after successful sign-in
-  return redirect("/protected");
+  return redirect(data.url);
 };
 
 export const signOutAction = async () => {
