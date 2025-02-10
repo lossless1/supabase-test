@@ -46,6 +46,7 @@ export default function RootLayout({
                     <div className="flex items-center gap-2">
                       <DeployButton />
                     </div>
+                    <Link href={"/protected/instruments"}>Instruments</Link>
                   </div>
                   {!hasEnvVars ? <EnvVarWarning /> : <HeaderAuth />}
                 </div>
