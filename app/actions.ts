@@ -130,13 +130,14 @@ export const resetPasswordAction = async (formData: FormData) => {
 export const signInWithGoogleAction = async () => {
   const supabase = await createClient();
 
-  const { error } = await supabase.auth.signInWithOAuth({
+  const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
       redirectTo: `${origin}/auth/callback`,
     },
   });
 
+  console.log("data :>> ", data);
   console.log("error :>> ", error);
   if (error) {
     return encodedRedirect("error", "/sign-in", error.message);
